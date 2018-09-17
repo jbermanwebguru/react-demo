@@ -1,0 +1,90 @@
+$error-color: #fff253;
+
+html, body {border: 0; margin: 0; padding: 0;}
+
+body {
+  font-family: 'Quicksand', helvetica;
+  font-weight: 300;
+  margin: 24px;
+  background: #444 url('../images/background-bokeh-green-6466.jpg') center center;
+  background-size: cover;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+h1 {
+  font-size: 64px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+a:active, a:hover {
+  outline: 0;
+}
+
+.button {
+  -webkit-appearance: none;
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  padding: 15px 80px;
+  margin: 0 10px;
+  clear: left;
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+}
+
+.container{margin: 0 auto; max-width: 600px;}
+.row{float: left; width: 100%; padding: 20px 0 50px;}
+.col-1{float: left; width: 93%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
+.col-2{float: left; width: 43.5%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
+.col-3{float: left; width: 27.33%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
+.center {text-align: center;}
+
+.input-field {
+  border: 1px solid transparent;
+  border-bottom-color: #fff;
+  color: #fff;font-family: 'Montserrat', helvetica;font-weight: 300;
+  width: 100%;
+  padding: 7px 14px;
+  transition: 0.4s;
+  background: transparent;
+  font-size: 24px;
+  transition: background-color 0.3s;
+
+  &:focus {background-color: rgba(255,255,255,0.3); outline: 0;}
+
+  & ~ .focus-border {
+    &:before,
+    &:after{content: ""; position: absolute; top: 0; left: 0; width: 0; height: 1px; background-color: #fff; transition: 0.3s;}
+    &:after{top: auto; bottom: 0; left: auto; right: 0;}
+    & i:before,
+    & i:after{content: ""; position: absolute; top: 0; left: 0; width: 1px; height: 0; background-color: #fff; transition: 0.4s;}
+    & i:after{left: auto; right: 0; top: auto; bottom: 0;}
+  }
+
+  &:focus ~ .focus-border:before,
+  &:focus ~ .focus-border:after,
+  &.has-value ~ .focus-border:before,
+  &.has-value ~ .focus-border:after{width: 100%; transition: 0.3s;}
+  &:focus ~ .focus-border i:before,
+  &:focus ~ .focus-border i:after,
+  &.has-value ~ .focus-border i:before,
+  &.has-value ~ .focus-border i:after{height: 100%; transition: 0.4s;}
+  & ~ label{position: absolute; left: 14px; width: 100%; top: 10px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px; transition: background-color 0.3s;}
+  &:focus ~ label, &.has-value ~ label{top: -18px; left: 0; font-size: 12px; color: #fff; transition: 0.3s;}
+  & ~ .error-label {transition: 0.4s; position: absolute; opacity: 0; bottom: 0; right: 14px; color: $error-color; text-align: right;}
+
+  &.error {
+    border-bottom-color: $error-color;
+
+    & ~ .focus-border:before, & ~ .focus-border:after, & ~ .focus-border i:before, & ~ .focus-border i:after {background-color: $error-color;}
+    & ~ .error-label {bottom: -22px; opacity: 1;}
+  }
+}
