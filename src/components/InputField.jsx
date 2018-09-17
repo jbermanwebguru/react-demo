@@ -17,7 +17,6 @@ class InputField extends React.Component {
   }
 
   handleChange(event) {
-    var error = this.props.errors[this.props.name];
     this.setState({
       value: event.target.value,
       hasValue: event.target.value !== ''

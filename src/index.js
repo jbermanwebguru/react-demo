@@ -1,12 +1,25 @@
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import React from 'react';
-import { render } from 'react-dom';
-// Importing the fetch polyfill allows cypress to intercept fetch api requests.
-import 'whatwg-fetch';
-// Change me if you prefer sass,scss, less. (Note you may need to update the build config)
-import './index.css';
-import Root from './components/Root';
+import { store, history} from './store';
 
-render(<Root />, document.getElementById('root'));
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+
+import App from './components/App';
+
+import './assets/styles/base.css';
+
+ReactDOM.render((
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>
+
+), document.getElementById('root'));
 
 // Hot Module Replacement
 if (module.hot) {
