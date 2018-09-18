@@ -5,3 +5,5 @@ export const REDIRECT = 'REDIRECT';
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const PLAYERS_LOADED = 'PLAYERS_LOADED';
+export const ADD_PLAYER = 'ADD_PLAYER';

@@ -29,8 +29,8 @@ export default (state = defaultState, action) => {
     case REGISTER:
       return {
         ...state,
-        redirectTo: action.error ? null : '/',
-        token: action.error ? null : action.payload.user.token,
+        redirectTo: action.error ? null : '/roster',
+        token: action.error ? null : action.payload.token,
         currentUser: action.error ? null : action.payload.user
       };
     default:

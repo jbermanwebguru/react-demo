@@ -33,7 +33,7 @@ class InputField extends React.Component {
     };
     return (
       <div className={'col-' + this.props.cols}>
-        <input type={this.props.type} name={this.props.name}
+        <input autocomplete="false" type={this.props.type} id={this.props.id} name={this.props.name}
           className={'input-field' + (hasError() ? ' error' : '') + (hasValue() ? ' has-value' : '')}
           onChange={this.handleChange}/>
         <label>{this.props.label}</label>

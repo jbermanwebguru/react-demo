@@ -9,6 +9,8 @@ import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
+import Roster from './Roster';
+import AddPlayer from './AddPlayer';
 
 import '../assets/stylesheets/base.scss';
 
@@ -30,7 +32,6 @@ const mapDispatchToProps = dispatch => ({
 class App extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.redirectTo) {
-      // this.context.router.replace(nextProps.redirectTo);
       store.dispatch(push(nextProps.redirectTo));
       this.props.onRedirect();
     }
@@ -41,8 +42,6 @@ class App extends React.Component {
     if (token) {
       agent.setToken(token);
     }
-
-    this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
 
   render() {
@@ -52,6 +51,8 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/roster" component={Roster} />
+          <Route path="/player/new" component={AddPlayer} />
           <Route path="*" component={Home} />
         </Switch>
       </div>

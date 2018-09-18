@@ -2,19 +2,19 @@ import React from 'react';
 import InputField from './InputField';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { REGISTER } from '../constants/actionTypes';
+import { ADD_PLAYER } from '../constants/actionTypes';
 import ListErrors from './ListErrors';
 
 const mapStateToProps = state => ({ ...state.auth });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (first_name, last_name, email, password, confirm_password) => {
-    const payload = agent.Auth.register(first_name, last_name, email, password, confirm_password);
-    dispatch({ type: REGISTER, payload })
+  onSubmit: (first_name, last_name, rating, handedness) => {
+    const payload = agent.Players.create(first_name, last_name, rating, handedness);
+    dispatch({ type: ADD_PLAYER, payload })
   }
 });
 
-class Register extends React.Component {
+class AddPlayer extends React.Component {
   constructor() {
     super();
 
@@ -29,9 +29,8 @@ class Register extends React.Component {
         this.props.onSubmit(
             this.state.first_name,
             this.state.last_name,
-            this.state.email,
-            this.state.password,
-            this.state.confirm_password,
+            this.state.rating,
+            this.state.handedness
           );
       }
     }
@@ -42,15 +41,13 @@ class Register extends React.Component {
       errors: {
         first_name: true,
         last_name: true,
-        email: true,
-        password: true,
-        confirm_password: true,
+        rating: true,
+        handedness: true
       },
       first_name: '',
       last_name: '',
-      email: '',
-      password: '',
-      confirm_password: '',
+      rating: '',
+      handedness: ''
     };
   }
 
@@ -62,7 +59,7 @@ class Register extends React.Component {
     return (
       <div className="row">
         <div className="container">
-          <h1>Register</h1>
+          <h1>Add A Player</h1>
 
           <form autocomplete="false" onSubmit={this.submitForm()}>
             <InputField onChange={this.handleChange} cols="2" type="text"
@@ -73,22 +70,18 @@ class Register extends React.Component {
               id="lastName" name="last_name" label="Last Name" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
 
-            <InputField onChange={this.handleChange} cols="1" type="email"
-              id="email" name="email" label="Email" errors={this.state.errors}
+            <InputField onChange={this.handleChange} cols="2" type="number"
+              id="rating" name="rating" label="Rating" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
 
-            <InputField onChange={this.handleChange} cols="2" type="password"
-              id="password" name="password" label="Password" errors={this.state.errors}
-              submitClicked={this.state.submitClicked}/>
-
-            <InputField onChange={this.handleChange} cols="2" type="password"
-              id="confirmPassword" name="confirm_password" label="Confirm Password" errors={this.state.errors}
+            <InputField onChange={this.handleChange} cols="2" type="handedness"
+              id="handedness" name="handedness" label="Handedness" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
 
             <ListErrors errors={this.props.errors} />
 
             <div className="center">
-              <button id="register" className="button">Register</button>
+              <button id="create" className="button">Add Player</button>
             </div>
           </form>
         </div>
@@ -98,4 +91,4 @@ class Register extends React.Component {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPlayer);

@@ -10,7 +10,7 @@ const responseBody = res => res.body;
 let token = null;
 const tokenPlugin = req => {
   if (token) {
-    req.set('authorization', `Token ${token}`);
+    req.set('authorization', `Bearer ${token}`);
   }
 }
 
@@ -26,15 +26,20 @@ const requests = {
 };
 
 const Auth = {
-  current: () =>
-    requests.get('/user'),
   login: (email, password) =>
     requests.post('/login', { email, password }),
   register: (first_name, last_name, email, password, confirm_password) =>
     requests.post('/user', { first_name, last_name, email, password, confirm_password })
 };
 
+const Players = {
+  all: () => requests.get('/players'),
+  create: (first_name, last_name, rating, handedness) =>
+    requests.post('/players', { first_name, last_name, rating, handedness })
+};
+
 export default {
+  Players,
   Auth,
   setToken: _token => { token = _token; }
 };
