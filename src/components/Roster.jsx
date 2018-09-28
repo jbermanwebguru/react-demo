@@ -2,15 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import agent from '../agent';
-import { PLAYERS_LOADED } from '../constants/actionTypes';
+import { PLAYERS_LOADED, DELETE_PLAYER } from '../constants/actionTypes';
 
-const mapStateToProps = state => ({
-  ...state
-});
+const mapStateToProps = state => ({ ...state.players });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: payload =>
-    dispatch({ type: PLAYERS_LOADED, payload })
+  onClickDelete: (playerId) => {
+    const payload = agent.Players.delete(playerId);
+    dispatch({ type: DELETE_PLAYER, payload, playerId });
+  },
+  onLoad: payload => {
+    dispatch({ type: PLAYERS_LOADED, payload });
+  }
 });
 
 class Roster extends React.Component {
@@ -18,9 +21,12 @@ class Roster extends React.Component {
     this.props.onLoad(agent.Players.all());
   }
 
+  handleDelete(playerId) {
+    this.props.onClickDelete(playerId);
+  }
+
   render() {
-    console.log('this.props.players=', this.props.players);
-    if (!this.props.players.players) {
+    if (!this.props.players) {
       return (
         <div>
           <h1>Roster</h1>
@@ -29,7 +35,7 @@ class Roster extends React.Component {
       );
     }
 
-    if (this.props.players.players.length === 0) {
+    if (this.props.players.length === 0) {
       return (
         <div>
           <h1>Roster</h1>
@@ -51,17 +57,25 @@ class Roster extends React.Component {
               <th>Last Name</th>
               <th>Rating</th>
               <th>Handedness</th>
+              <th style={{textAlign: 'center'}}>Delete</th>
             </tr>
           </thead>
           <tbody>
             {
-              this.props.players.players.map(player => {
+              this.props.players.map(player => {
                 return (
-                  <tr>
+                  <tr key={player.id}>
                     <td>{player.first_name}</td>
                     <td>{player.last_name}</td>
                     <td>{player.rating}</td>
                     <td>{player.handedness}</td>
+                    <td style={{textAlign: 'center'}}>
+                      <button onClick={this.handleDelete.bind(this, player.id)} className="delete delete-icon">
+                        <div className="lid"></div>
+                        <div className="lidcap"></div>
+                        <div className="bin"></div>
+                      </button>
+                    </td>
                   </tr>
                 );
               })

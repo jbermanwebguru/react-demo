@@ -35,7 +35,9 @@ const Auth = {
 const Players = {
   all: () => requests.get('/players'),
   create: (first_name, last_name, rating, handedness) =>
-    requests.post('/players', { first_name, last_name, rating, handedness })
+    requests.post('/players', { first_name, last_name, rating, handedness }),
+  delete: (slug) =>
+    requests.del(`/players/${slug}`),
 };
 
 export default {

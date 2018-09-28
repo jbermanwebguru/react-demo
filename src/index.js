@@ -18,7 +18,6 @@ ReactDOM.render((
       </Switch>
     </ConnectedRouter>
   </Provider>
-
 ), document.getElementById('root'));
 
 // Hot Module Replacement

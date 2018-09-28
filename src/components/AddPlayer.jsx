@@ -1,11 +1,11 @@
 import React from 'react';
-import InputField from './InputField';
-import agent from '../agent';
 import { connect } from 'react-redux';
+import agent from '../agent';
 import { ADD_PLAYER } from '../constants/actionTypes';
+import InputField from './InputField';
 import ListErrors from './ListErrors';
 
-const mapStateToProps = state => ({ ...state.auth });
+const mapStateToProps = state => ({ ...state.players });
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: (first_name, last_name, rating, handedness) => {
@@ -27,17 +27,16 @@ class AddPlayer extends React.Component {
       this.setState({ submitClicked: true });
       if (this.formValid()) {
         this.props.onSubmit(
-            this.state.first_name,
-            this.state.last_name,
-            this.state.rating,
-            this.state.handedness
-          );
+          this.state.first_name,
+          this.state.last_name,
+          this.state.rating,
+          this.state.handedness
+        );
       }
     }
 
     this.state = {
       submitClicked: false,
-      error: '',
       errors: {
         first_name: true,
         last_name: true,
@@ -61,7 +60,7 @@ class AddPlayer extends React.Component {
         <div className="container">
           <h1>Add A Player</h1>
 
-          <form autocomplete="false" onSubmit={this.submitForm()}>
+          <form autoComplete="false" onSubmit={this.submitForm()}>
             <InputField onChange={this.handleChange} cols="2" type="text"
               id="firstName" name="first_name" label="First Name" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
@@ -74,7 +73,8 @@ class AddPlayer extends React.Component {
               id="rating" name="rating" label="Rating" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
 
-            <InputField onChange={this.handleChange} cols="2" type="handedness"
+            <InputField onChange={this.handleChange} cols="2" type="select"
+              options={[{value: 'left', text: 'Left'}, {value: 'right', text: 'Right'}]}
               id="handedness" name="handedness" label="Handedness" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>
 

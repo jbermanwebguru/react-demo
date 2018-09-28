@@ -3,7 +3,10 @@ import {
   REDIRECT,
   LOGOUT,
   LOGIN,
-  REGISTER
+  REGISTER,
+  PLAYERS_LOADED,
+  ADD_PLAYER,
+  DELETE_PLAYER
 } from '../constants/actionTypes';
 
 const defaultState = {
@@ -33,6 +36,21 @@ export default (state = defaultState, action) => {
         token: action.error ? null : action.payload.token,
         currentUser: action.error ? null : action.payload.user
       };
+    case PLAYERS_LOADED:
+      return {
+        ...state,
+        inProgress: false,
+        players: action.payload.players,
+        errors: action.error ? [action.payload.error] : null
+      };
+    case ADD_PLAYER:
+    case DELETE_PLAYER:
+      return {
+        ...state,
+        inProgress: false,
+        redirectTo: action.error ? null : '/roster',
+        errors: action.error ? [action.payload.error] : null
+        }
     default:
       return state;
   }

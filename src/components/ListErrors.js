@@ -9,7 +9,7 @@ class ListErrors extends React.Component {
           {
             errors.map(error => {
               return (
-                <li>
+                <li key={error.code}>
                   {error.message}
                 </li>
               );

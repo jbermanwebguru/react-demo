@@ -27,18 +27,17 @@ class Register extends React.Component {
       this.setState({ submitClicked: true });
       if (this.formValid()) {
         this.props.onSubmit(
-            this.state.first_name,
-            this.state.last_name,
-            this.state.email,
-            this.state.password,
-            this.state.confirm_password,
-          );
+          this.state.first_name,
+          this.state.last_name,
+          this.state.email,
+          this.state.password,
+          this.state.confirm_password,
+        );
       }
     }
 
     this.state = {
       submitClicked: false,
-      error: '',
       errors: {
         first_name: true,
         last_name: true,
@@ -64,7 +63,7 @@ class Register extends React.Component {
         <div className="container">
           <h1>Register</h1>
 
-          <form autocomplete="false" onSubmit={this.submitForm()}>
+          <form autoComplete="false" onSubmit={this.submitForm()}>
             <InputField onChange={this.handleChange} cols="2" type="text"
               id="firstName" name="first_name" label="First Name" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>

@@ -7,9 +7,9 @@ body {
   font-family: 'Quicksand', helvetica;
   font-weight: 300;
   margin: 24px;
-  background: #444 url("../images/background-bokeh-green-6466.jpg") center center;
-  background-size: cover;
-  color: #f0f0f0;
+  background: #f0f0f0;
+  -webkit-backface-visibility: hidden;
+  color: #444;
   text-align: center; }
 
 * {
@@ -20,32 +20,43 @@ body {
 h1 {
   font-size: 64px;
   margin-bottom: 40px;
-  font-weight: 300; }
+  font-weight: 300;
+  text-shadow: 0 1px 1px #fff;
+  text-transform: lowercase; }
 
 h2 {
   font-size: 32px;
   margin-bottom: 40px;
-  font-weight: 300; }
+  font-weight: 300;
+  text-shadow: 0 1px 1px #fff;
+  text-transform: lowercase; }
 
 a:active, a:hover {
   outline: 0; }
 
 .button {
   -webkit-appearance: none;
+  display: inline-block;
   position: relative;
   overflow: hidden;
-  width: 280px;
-  padding: 15px 80px;
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
   margin: 0 10px;
-  clear: left;
   background-color: #fff;
-  color: #000;
+  color: #444;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 2; }
+  letter-spacing: 2;
+  border-top-color: #d8d8d8;
+  border-right-color: #d1d1d1;
+  border-bottom-color: #bababa;
+  border-left-color: #d1d1d1;
+  border-style: solid;
+  border-width: 1px; }
 
 .container {
   margin: 0 auto;
@@ -78,12 +89,17 @@ a:active, a:hover {
   text-align: left; }
 
 .center {
+  clear: both;
   text-align: center; }
 
 .input-field {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
   border: 1px solid transparent;
-  border-bottom-color: #fff;
-  color: #fff;
+  border-bottom-color: #85ADB2;
+  color: #13c6f3;
   font-family: 'Montserrat', helvetica;
   font-weight: 300;
   width: 100%;
@@ -102,7 +118,7 @@ a:active, a:hover {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: #fff;
+    background-color: #13c6f3;
     transition: 0.3s; }
   .input-field ~ .focus-border:after {
     top: auto;
@@ -117,7 +133,7 @@ a:active, a:hover {
     left: 0;
     width: 1px;
     height: 0;
-    background-color: #fff;
+    background-color: #13c6f3;
     transition: 0.4s; }
   .input-field ~ .focus-border i:after {
     left: auto;
@@ -141,7 +157,7 @@ a:active, a:hover {
     left: 14px;
     width: 100%;
     top: 10px;
-    color: #aaa;
+    color: #333;
     transition: 0.3s;
     z-index: -1;
     letter-spacing: 0.5px;
@@ -150,7 +166,7 @@ a:active, a:hover {
     top: -18px;
     left: 0;
     font-size: 12px;
-    color: #fff;
+    color: #333;
     transition: 0.3s; }
   .input-field ~ .error-label {
     transition: 0.4s;
@@ -158,12 +174,12 @@ a:active, a:hover {
     opacity: 0;
     bottom: 0;
     right: 14px;
-    color: #fff253;
+    color: #f137a4;
     text-align: right; }
   .input-field.error {
-    border-bottom-color: #fff253; }
+    border-bottom-color: #f137a4; }
     .input-field.error ~ .focus-border:before, .input-field.error ~ .focus-border:after, .input-field.error ~ .focus-border i:before, .input-field.error ~ .focus-border i:after {
-      background-color: #fff253; }
+      background-color: #f137a4; }
     .input-field.error ~ .error-label {
       bottom: -22px;
       opacity: 1; }
@@ -174,7 +190,7 @@ a:active, a:hover {
   margin-bottom: 20px; }
   .error-messages li {
     list-style-type: none;
-    color: #fff253; }
+    color: #f137a4; }
 
 table {
   max-width: 600px;
@@ -184,11 +200,56 @@ table {
   border-collapse: collapse; }
   table th {
     text-align: left;
-    border-bottom: solid 2px #fff;
-    color: #ddd;
+    border-bottom: solid 1px #628697;
+    color: #666;
     padding: 8px; }
   table td {
     text-align: left;
-    border-bottom: solid 1px #fff;
-    color: #fff;
+    border-bottom: solid 1px #628697;
+    color: #333;
     padding: 8px; }
+
+.delete-icon {
+  -webkit-appearance: none;
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  transition: box-shadow .2s ease; }
+
+.delete-icon:hover .lid, .delete-icon:hover .lidcap {
+  transform: rotate(40deg);
+  margin-bottom: 3.5px;
+  margin-right: -2.5px; }
+
+.lidcap, .lid, .bin {
+  position: absolute; }
+
+.lidcap, .lid {
+  border-top-left-radius: 0.4px;
+  border-top-right-radius: 0.4px;
+  background: #555;
+  transition: transform .2s linear, margin .2s linear; }
+
+.lidcap {
+  bottom: 15px;
+  left: 9px;
+  height: 1px;
+  width: 2px; }
+
+.lid {
+  bottom: 13px;
+  left: 3px;
+  width: 14px;
+  height: 2px; }
+
+.bin {
+  bottom: 0;
+  left: 4.5px;
+  width: 10px;
+  border-top: 12px solid #555;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent; }

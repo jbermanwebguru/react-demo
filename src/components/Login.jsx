@@ -35,7 +35,6 @@ class Login extends React.Component {
 
     this.state = {
       submitClicked: false,
-      error: '',
       errors: {
         email: true,
         password: true,
@@ -55,7 +54,7 @@ class Login extends React.Component {
         <div className="container">
           <h1>Login</h1>
 
-          <form autocomplete="off" onSubmit={this.submitForm()}>
+          <form autoComplete="off" onSubmit={this.submitForm()}>
             <InputField onChange={this.handleChange} cols="2" type="text"
               id="email" name="email" label="Email" errors={this.state.errors}
               submitClicked={this.state.submitClicked}/>

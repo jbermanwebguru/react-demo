@@ -1,4 +1,5 @@
-$error-color: #fff253;
+$error-color: #f137a4;
+$highlight-color: #13c6f3;
 
 html, body {border: 0; margin: 0; padding: 0;}
 
@@ -6,9 +7,9 @@ body {
   font-family: 'Quicksand', helvetica;
   font-weight: 300;
   margin: 24px;
-  background: #444 url('../images/background-bokeh-green-6466.jpg') center center;
-  background-size: cover;
-  color: #f0f0f0;
+  background: #f0f0f0;
+  -webkit-backface-visibility: hidden;
+  color: #444;
   text-align: center;
 }
 
@@ -18,12 +19,16 @@ h1 {
   font-size: 64px;
   margin-bottom: 40px;
   font-weight: 300;
+  text-shadow: 0 1px 1px #fff;
+  text-transform: lowercase;
 }
 
 h2 {
   font-size: 32px;
   margin-bottom: 40px;
   font-weight: 300;
+  text-shadow: 0 1px 1px #fff;
+  text-transform: lowercase;
 }
 
 a:active, a:hover {
@@ -32,20 +37,27 @@ a:active, a:hover {
 
 .button {
   -webkit-appearance: none;
+  display: inline-block;
   position: relative;
   overflow: hidden;
-  width: 280px;
-  padding: 15px 80px;
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
   margin: 0 10px;
-  clear: left;
   background-color: #fff;
-  color: #000;
+  color: #444;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2;
+  border-top-color: rgb(216, 216, 216);
+  border-right-color: rgb(209, 209, 209);
+  border-bottom-color: rgb(186, 186, 186);
+  border-left-color: rgb(209, 209, 209);
+  border-style: solid;
+  border-width: 1px;
 }
 
 .container{margin: 0 auto; max-width: 600px;}
@@ -53,12 +65,16 @@ a:active, a:hover {
 .col-1{float: left; width: 93%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
 .col-2{float: left; width: 43.5%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
 .col-3{float: left; width: 27.33%; margin: 0 3% 40px 3%; position: relative; text-align: left;}
-.center {text-align: center;}
+.center{clear: both; text-align: center;}
 
 .input-field {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
   border: 1px solid transparent;
-  border-bottom-color: #fff;
-  color: #fff;font-family: 'Montserrat', helvetica;font-weight: 300;
+  border-bottom-color: #85ADB2;
+  color: $highlight-color;font-family: 'Montserrat', helvetica;font-weight: 300;
   width: 100%;
   padding: 7px 14px;
   transition: 0.4s;
@@ -70,10 +86,10 @@ a:active, a:hover {
 
   & ~ .focus-border {
     &:before,
-    &:after{content: ""; position: absolute; top: 0; left: 0; width: 0; height: 1px; background-color: #fff; transition: 0.3s;}
+    &:after{content: ""; position: absolute; top: 0; left: 0; width: 0; height: 1px; background-color: $highlight-color; transition: 0.3s;}
     &:after{top: auto; bottom: 0; left: auto; right: 0;}
     & i:before,
-    & i:after{content: ""; position: absolute; top: 0; left: 0; width: 1px; height: 0; background-color: #fff; transition: 0.4s;}
+    & i:after{content: ""; position: absolute; top: 0; left: 0; width: 1px; height: 0; background-color: $highlight-color; transition: 0.4s;}
     & i:after{left: auto; right: 0; top: auto; bottom: 0;}
   }
 
@@ -85,8 +101,8 @@ a:active, a:hover {
   &:focus ~ .focus-border i:after,
   &.has-value ~ .focus-border i:before,
   &.has-value ~ .focus-border i:after{height: 100%; transition: 0.4s;}
-  & ~ label{position: absolute; left: 14px; width: 100%; top: 10px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px; transition: background-color 0.3s;}
-  &:focus ~ label, &.has-value ~ label{top: -18px; left: 0; font-size: 12px; color: #fff; transition: 0.3s;}
+  & ~ label{position: absolute; left: 14px; width: 100%; top: 10px; color: #333; transition: 0.3s; z-index: -1; letter-spacing: 0.5px; transition: background-color 0.3s;}
+  &:focus ~ label, &.has-value ~ label{top: -18px; left: 0; font-size: 12px; color: #333; transition: 0.3s;}
   & ~ .error-label {transition: 0.4s; position: absolute; opacity: 0; bottom: 0; right: 14px; color: $error-color; text-align: right;}
 
   &.error {
@@ -117,15 +133,70 @@ table {
 
   th {
     text-align: left;
-    border-bottom: solid 2px #fff;
-    color: #ddd;
+    border-bottom: solid 1px #628697;
+    color: #666;
     padding: 8px;
   }
 
   td {
     text-align: left;
-    border-bottom: solid 1px #fff;
-    color: #fff;
+    border-bottom: solid 1px #628697;
+    color: #333;
     padding: 8px;
   }
+}
+
+$delete-icon-scale: 0.1;
+$delete-icon-color: #555;
+
+.delete-icon {
+  -webkit-appearance: none;
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  width: 200px*$delete-icon-scale;
+  height: 200px*$delete-icon-scale;
+  transition: box-shadow .2s ease;
+}
+
+.delete-icon:hover .lid, .delete-icon:hover .lidcap {
+  transform: rotate(40deg);
+  margin-bottom: 35px*$delete-icon-scale;
+  margin-right: -25px*$delete-icon-scale;
+}
+
+.lidcap, .lid, .bin {
+  position: absolute;
+}
+
+.lidcap, .lid {
+  border-top-left-radius: 4px*$delete-icon-scale;
+  border-top-right-radius: 4px*$delete-icon-scale;
+  background: $delete-icon-color;
+  transition: transform .2s linear, margin .2s linear;
+}
+
+.lidcap {
+  bottom: 150px*$delete-icon-scale;
+  left: 90px*$delete-icon-scale;
+  height: 10px*$delete-icon-scale;
+  width: 20px*$delete-icon-scale;
+}
+
+.lid {
+  bottom: 130px*$delete-icon-scale;
+  left: 30px*$delete-icon-scale;
+  width: 140px*$delete-icon-scale;
+  height: 20px*$delete-icon-scale;
+}
+
+.bin {
+  bottom: 0;
+  left: 45px*$delete-icon-scale;
+  width: 100px*$delete-icon-scale;
+	border-top: 120px*$delete-icon-scale solid $delete-icon-color;
+	border-left: 10px*$delete-icon-scale solid transparent;
+	border-right: 10px*$delete-icon-scale solid transparent;
 }
