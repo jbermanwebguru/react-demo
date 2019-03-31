@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders the component 1`] = `
+<div>
+  <h1>
+    Player Roster
+  </h1>
+  <Link
+    className="button"
+    replace={false}
+    to="/login"
+  >
+    Login
+  </Link>
+  <Link
+    className="button"
+    replace={false}
+    to="/register"
+  >
+    Register
+  </Link>
+</div>
+`;

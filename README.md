@@ -1,8 +1,12 @@
-# Alchemy React Test
+# React Test
+
+Completed by John Berman
+
+### ORIGINAL README PROVIDED BY TEST TAKER ###
 
 ## Background
-The engineering team at Alchemy has built an (imaginary) game management platform.
-The platform has an API that allows you to create a manager(user) that allows them 
+The engineering team has built an (imaginary) game management platform.
+The platform has an API that allows you to create a manager(user) that allows them
 to manage player rosters for their chosen sport.
 
 ## Your Mission
@@ -38,7 +42,7 @@ This test uses cypress to test user interactions, it requires that certain text,
 To see what tests are passing and why run: (Make sure your dev server is already running with npm start)
 - npm run e2e
 
-Part of working on a high performing team is making sure that everyone is using consistent style guidelines. This test 
+Part of working on a high performing team is making sure that everyone is using consistent style guidelines. This test
 uses ESLint and StyleLint to enforce rules outlined in .eslintrc and .stylelintrc. To check your styles against these guidelines run:
 - npm run lint:js
 - npm run lint:styles
@@ -55,7 +59,7 @@ Other factors that we take into account in the assessment.
 - Honest feedback on this assessment.
 
 ## API details
-The API is currently available here. https://players-api.developer.alchemy.codes/
+The API is currently available here. https://some-api-goes-here.com/
 Your API requests should target this url, but the cypress framework will stub out all responses and still work
 even if you don't have an internet connection.
 
@@ -105,7 +109,7 @@ Create a new admin user. Each use must have a unique email address.
 curl -XPOST \
   -H 'Content-Type: application/json' \
   -d '{"first_name": "Jim", "last_name": "Bob", "email": "jim@bob.com", "password": "foobar", "confirm_password": "foobar"}' \
-  https://players-api.developer.alchemy.codes/api/user
+  https://some-api-goes-here.com/api/user
 ```
 
 ### User Login
@@ -135,7 +139,7 @@ Login an admin user.
 curl -XPOST \
   -H 'Content-Type: application/json' \
   -d '{"email": "jim@bob.com", "password": "foobar"}' \
-  https://players-api.developer.alchemy.codes/api/login
+  https://some-api-goes-here.com/api/login
 ```
 
 ### Player API
@@ -177,7 +181,7 @@ List all current players in the system. Players are scoped to the current user.
 ```
 curl -XGET \
   -H 'Authorization: Bearer <my_jwt_token>' \
-  https://players-api.developer.alchemy.codes/api/players
+  https://some-api-goes-here.com/api/players
 ```
 
 ### Create Player
@@ -215,7 +219,7 @@ curl -XPOST \
   -H 'Authorization: Bearer <my_jwt_token>' \
   -H 'Content-Type: application/json' \
   -d '{"first_name": "Ma", "last_name": "Long", "rating": 9000, "handedness": "right"}' \
-  https://players-api.developer.alchemy.codes/api/players
+  https://some-api-goes-here.com/api/players
 ```
 
 ### Delete players
@@ -247,5 +251,5 @@ Delete player from the system.
 ```
 curl -XDELETE \
   -H 'Authorization: Bearer <my_jwt_token>' \
-  https://players-api.developer.alchemy.codes/api/players/1
+  https://some-api-goes-here.com/api/players/1
 ```

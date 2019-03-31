@@ -11,12 +11,12 @@ Cypress.Commands.add('login', () => {
   cy.server();
   cy.route(
     'POST',
-    'https://players-api.developer.alchemy.codes/api/login',
+    'https://some-api-goes-here.com/api/login',
     'fixture:login.json',
   );
   cy.route(
     'GET',
-    'https://players-api.developer.alchemy.codes/api/players',
+    'https://some-api-goes-here.com/api/players',
     'fixture:getPlayers.json',
   );
   cy.visit('/login');

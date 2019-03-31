@@ -3,13 +3,38 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env PORT=3000 react-scripts start",
+    "start": "cross-env PORT=3000 react-scripts start | npm run watch-css",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build": "react-scripts build",
     "e2e": "cypress open",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "lint:js": "eslint src/**/**/*.js src/**/**/*.jsx tests/**/**/*.js",
     "lint:style": "stylelint src/**/**/*.css src/**/**/*.scss"
+  },
+  "jest": {
+    "verbose": true,
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/tests/unit/setup/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/tests/unit/setup/fileMock.js"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/unit/setup/setupEnzyme.js",
+    "testMatch": [
+      "<rootDir>/tests/unit/**/*.spec.jsx"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/tests/e2e/",
+      "<rootDir>/tests/unit/setup/"
+    ]
   },
   "dependencies": {
     "assets": "^3.0.0",
@@ -31,14 +56,21 @@
     "superagent-promise": "^1.1.0"
   },
   "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.6.0",
     "node-sass": "^4.9.3",
+    "node-sass-chokidar": "^1.3.3",
     "prettier": "^1.13.5",
     "prettierrc": "0.0.0-5",
+    "redux-mock-store": "^1.5.3",
     "stylelint": "^9.3.0",
     "stylelint-config-standard": "^18.2.0"
   }

@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'https://players-api.developer.alchemy.codes/api';
+const API_ROOT = 'https://some-api-goes-here.com/api';
 
 const responseBody = res => res.body;
 

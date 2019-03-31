@@ -3,8 +3,8 @@ describe('Add player page', () => {
 		cy.login();
 		cy.server();
 		// Cypress routes are one time use
-		cy.route('POST', 'https://players-api.developer.alchemy.codes/api/players', 'fixture:createPlayer.json');
-		cy.route('GET', 'https://players-api.developer.alchemy.codes/api/players', 'fixture:getPlayers.json');
+		cy.route('POST', 'https://some-api-goes-here.com/api/players', 'fixture:createPlayer.json');
+		cy.route('GET', 'https://some-api-goes-here.com/api/players', 'fixture:getPlayers.json');
 	});
 
 	it('Contains player field labels', () => {

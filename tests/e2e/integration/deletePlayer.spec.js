@@ -4,10 +4,10 @@ describe('Delete Player', () => {
 		cy.server();
 		cy.route(
 			'DELETE',
-			'https://players-api.developer.alchemy.codes/api/players/5b24deb1310d217ff39012c4',
+			'https://some-api-goes-here.com/api/players/5b24deb1310d217ff39012c4',
 			'fixture:deletePlayer.json'
 		);
-		cy.route('GET', 'https://players-api.developer.alchemy.codes/api/players', 'fixture:getPlayersDeleted.json');
+		cy.route('GET', 'https://some-api-goes-here.com/api/players', 'fixture:getPlayersDeleted.json');
 	});
 
 	it('Will delete a player', () => {

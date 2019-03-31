@@ -1,7 +1,7 @@
 describe('Register Page', () => {
 	beforeEach(() => {
 		cy.server();
-		cy.route('POST', 'https://players-api.developer.alchemy.codes/api/user', 'fixture:createUser.json');
+		cy.route('POST', 'https://some-api-goes-here.com/api/user', 'fixture:createUser.json');
 	});
 
 	it('Contains email and password labels', () => {

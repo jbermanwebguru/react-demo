@@ -11,8 +11,9 @@ import Login from './Login';
 import Register from './Register';
 import Roster from './Roster';
 import AddPlayer from './AddPlayer';
+import NotFound from './NotFound';
 
-import '../assets/stylesheets/base.scss';
+import '../assets/styles/base.scss';
 
 const mapStateToProps = state => {
   return {
@@ -53,7 +54,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/roster" component={Roster} />
           <Route path="/player/new" component={AddPlayer} />
-          <Route path="*" component={Home} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     )
